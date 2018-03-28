@@ -38,7 +38,7 @@ class CustomCell : UITableViewCell {
     
     var mTextField : UITextField = {
         let mTextField = UITextField()
-        mTextField.placeholder = "Insert some label"
+        mTextField.placeholder = "Text input"
         mTextField.font = UIFont.systemFont(ofSize: 12)
         mTextField.textColor = UIColor.black
         mTextField.backgroundColor = UIColor.white
@@ -67,7 +67,6 @@ class CustomCell : UITableViewCell {
         
         containerView.addSubview(mTextField)
         mTextField.translatesAutoresizingMaskIntoConstraints = false
-        
         
         NSLayoutConstraint.activate([
             

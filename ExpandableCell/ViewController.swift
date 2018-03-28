@@ -13,6 +13,7 @@ class ViewController: UIViewController {
     let newTableView : UITableView = {
         let mTableView = UITableView()
         mTableView.tableFooterView = UIView()
+        mTableView.separatorStyle = UITableViewCellSeparatorStyle.none
         mTableView.register(CustomCell.self, forCellReuseIdentifier: "mCell")
         return mTableView
     }()
