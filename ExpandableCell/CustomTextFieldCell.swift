@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class CustomCell : UITableViewCell {
+class CustomTextFieldCell : UITableViewCell {
     
     var label : UILabel = {
         let mLabel = UILabel()

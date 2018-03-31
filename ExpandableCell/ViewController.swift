@@ -14,7 +14,9 @@ class ViewController: UIViewController {
         let mTableView = UITableView()
         mTableView.tableFooterView = UIView()
         mTableView.separatorStyle = UITableViewCellSeparatorStyle.none
-        mTableView.register(CustomCell.self, forCellReuseIdentifier: "mCell")
+        mTableView.register(CustomTextFieldCell.self, forCellReuseIdentifier: "mCell")
+        mTableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+
         return mTableView
     }()
     
@@ -40,27 +42,27 @@ class ViewController: UIViewController {
     
     func updateCell(_ indexPath: IndexPath){
         self.newTableView.deselectRow(at: indexPath, animated: true)
-        if (self.newTableView.cellForRow(at: indexPath) as! CustomCell).isExpanded {
+        let cell = (self.newTableView.cellForRow(at: indexPath) as! CustomTextFieldCell)
+        if cell.isExpanded {
             UIView.animate(withDuration: 0.5, delay: 0.1, options: .curveEaseOut, animations: {
-                (self.newTableView.cellForRow(at: indexPath) as! CustomCell).frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: 44)
-                (self.newTableView.cellForRow(at: indexPath) as! CustomCell).arrowImg.transform = CGAffineTransform.identity
-                (self.newTableView.cellForRow(at: indexPath) as! CustomCell).layoutIfNeeded()
+                cell.frame = CGRect(x: cell.frame.origin.x, y: cell.frame.origin.y, width: self.view.frame.width, height: 44)
+                cell.arrowImg.transform = CGAffineTransform.identity
+                cell.layoutIfNeeded()
             }, completion: { (finished: Bool)  in
-                    (self.newTableView.cellForRow(at: indexPath) as! CustomCell).cellHeight = 44
+                    cell.cellHeight = 44
                     self.newTableView.reloadData()
             })
         }else{
             UIView.animate(withDuration: 0.5, delay: 0.1, options: .curveEaseIn, animations: {
-                (self.newTableView.cellForRow(at: indexPath) as! CustomCell).frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: 88)
-                (self.newTableView.cellForRow(at: indexPath) as! CustomCell).arrowImg.transform = CGAffineTransform(rotationAngle: (180.0 * CGFloat(Double.pi)) / 180.0)
-                (self.newTableView.cellForRow(at: indexPath) as! CustomCell).layoutIfNeeded()
+                cell.frame = CGRect(x: cell.frame.origin.x, y: cell.frame.origin.y, width: self.view.frame.width, height: 88)
+                cell.arrowImg.transform = CGAffineTransform(rotationAngle: (180.0 * CGFloat(Double.pi)) / 180.0)
+                cell.layoutIfNeeded()
             }, completion: { (finished: Bool)  in
-                (self.newTableView.cellForRow(at: indexPath) as! CustomCell).cellHeight = 88
+                cell.cellHeight = 88
                 self.newTableView.reloadData()
             })
-            
         }
-        (self.newTableView.cellForRow(at: indexPath) as! CustomCell).isExpanded = !(self.newTableView.cellForRow(at: indexPath) as! CustomCell).isExpanded
+        cell.isExpanded = !cell.isExpanded
 
     }
     
@@ -70,19 +72,27 @@ class ViewController: UIViewController {
 extension ViewController : UITableViewDataSource, UITableViewDelegate {
  
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return 6
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "mCell", for: indexPath) as! CustomCell
-        cell.backgroundColor = UIColor.lightGray
-        cell.label.text = "Name: Victor Panitz Magalhães"
-        return cell
+        if indexPath.row == 2{
+            let cell = tableView.dequeueReusableCell(withIdentifier: "mCell", for: indexPath) as! CustomTextFieldCell
+            cell.backgroundColor = UIColor.lightGray
+            cell.label.text = "Name: Victor Panitz Magalhães"
+            return cell
+        }else{
+            let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! UITableViewCell
+            cell.textLabel?.text = "Any Text"
+            return cell
+
+        }
+       
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return (self.newTableView.cellForRow(at: indexPath) as? CustomCell)?.cellHeight != nil ?
-            (self.newTableView.cellForRow(at: indexPath) as! CustomCell).cellHeight :
+        return (self.newTableView.cellForRow(at: indexPath) as? CustomTextFieldCell)?.cellHeight != nil ?
+            (self.newTableView.cellForRow(at: indexPath) as! CustomTextFieldCell).cellHeight :
             CGFloat(44)
     }
     
