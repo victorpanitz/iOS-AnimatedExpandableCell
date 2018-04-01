@@ -66,20 +66,24 @@ class ViewController: UIViewController {
 
     }
     
+    @objc func handleCustomTxtField(sender: UITextField){
+        (newTableView.cellForRow(at: IndexPath(row: 2, section: 0)) as! CustomTextFieldCell).label.text = "Name: \(sender.text!)"
+    }
+    
     
 }
 
 extension ViewController : UITableViewDataSource, UITableViewDelegate {
  
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 6
+        return 4
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == 2{
             let cell = tableView.dequeueReusableCell(withIdentifier: "mCell", for: indexPath) as! CustomTextFieldCell
             cell.backgroundColor = UIColor.lightGray
-            cell.label.text = "Name: Victor Panitz Magalhães"
+            cell.mTextField.addTarget(self, action: #selector(handleCustomTxtField(sender:)), for: .editingChanged)
             return cell
         }else{
             let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! UITableViewCell

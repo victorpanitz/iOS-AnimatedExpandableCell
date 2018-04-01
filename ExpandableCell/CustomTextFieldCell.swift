@@ -14,6 +14,7 @@ class CustomTextFieldCell : UITableViewCell {
     var label : UILabel = {
         let mLabel = UILabel()
         mLabel.textColor = UIColor.black
+        mLabel.text = "Victor Panitz Magalhães"
         mLabel.font = UIFont.systemFont(ofSize: 12, weight: .semibold)
         mLabel.textAlignment = .left
         mLabel.numberOfLines = 2
@@ -43,6 +44,7 @@ class CustomTextFieldCell : UITableViewCell {
         mTextField.textColor = UIColor.black
         mTextField.backgroundColor = UIColor.white
         mTextField.keyboardType = .alphabet
+        mTextField.isUserInteractionEnabled = true
         mTextField.textAlignment = .center
         return mTextField
     }()
