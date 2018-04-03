@@ -12,7 +12,7 @@
 		71509E9C206959DD0084B198 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71509E9A206959DD0084B198 /* Main.storyboard */; };
 		71509E9E206959DD0084B198 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 71509E9D206959DD0084B198 /* Assets.xcassets */; };
 		71509EA1206959DD0084B198 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71509E9F206959DD0084B198 /* LaunchScreen.storyboard */; };
-		71509EA9206A7F0D0084B198 /* CustomTextFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71509EA8206A7F0D0084B198 /* CustomTextFieldCell.swift */; };
+		71509EA9206A7F0D0084B198 /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71509EA8206A7F0D0084B198 /* CustomCell.swift */; };
 		71AD5CC1207123AD0067A209 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71AD5CC0207123AD0067A209 /* Constants.swift */; };
 /* End PBXBuildFile section */
 
@@ -24,7 +24,7 @@
 		71509E9D206959DD0084B198 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		71509EA0206959DD0084B198 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		71509EA2206959DD0084B198 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		71509EA8206A7F0D0084B198 /* CustomTextFieldCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextFieldCell.swift; sourceTree = "<group>"; };
+		71509EA8206A7F0D0084B198 /* CustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
 		71AD5CC0207123AD0067A209 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -58,16 +58,24 @@
 		71509E95206959DD0084B198 /* ExpandableCell */ = {
 			isa = PBXGroup;
 			children = (
+				71AD5CC22073EAEA0067A209 /* Application */,
 				71AD5CC0207123AD0067A209 /* Constants.swift */,
-				71509E96206959DD0084B198 /* AppDelegate.swift */,
 				71509E98206959DD0084B198 /* ViewController.swift */,
-				71509EA8206A7F0D0084B198 /* CustomTextFieldCell.swift */,
+				71509EA8206A7F0D0084B198 /* CustomCell.swift */,
 				71509E9A206959DD0084B198 /* Main.storyboard */,
 				71509E9D206959DD0084B198 /* Assets.xcassets */,
-				71509E9F206959DD0084B198 /* LaunchScreen.storyboard */,
-				71509EA2206959DD0084B198 /* Info.plist */,
 			);
 			path = ExpandableCell;
+			sourceTree = "<group>";
+		};
+		71AD5CC22073EAEA0067A209 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				71509EA2206959DD0084B198 /* Info.plist */,
+				71509E9F206959DD0084B198 /* LaunchScreen.storyboard */,
+				71509E96206959DD0084B198 /* AppDelegate.swift */,
+			);
+			path = Application;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -143,7 +151,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				71509E99206959DD0084B198 /* ViewController.swift in Sources */,
-				71509EA9206A7F0D0084B198 /* CustomTextFieldCell.swift in Sources */,
+				71509EA9206A7F0D0084B198 /* CustomCell.swift in Sources */,
 				71509E97206959DD0084B198 /* AppDelegate.swift in Sources */,
 				71AD5CC1207123AD0067A209 /* Constants.swift in Sources */,
 			);
@@ -284,7 +292,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = PFBFJV3F25;
-				INFOPLIST_FILE = ExpandableCell/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/ExpandableCell/Application/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.victorpanitz.ExpandableCell;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -299,7 +307,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = PFBFJV3F25;
-				INFOPLIST_FILE = ExpandableCell/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/ExpandableCell/Application/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.victorpanitz.ExpandableCell;
 				PRODUCT_NAME = "$(TARGET_NAME)";

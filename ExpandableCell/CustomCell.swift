@@ -11,12 +11,12 @@
 import Foundation
 import UIKit
 
-class CustomTextFieldCell : UITableViewCell {
+class CustomCell : UITableViewCell {
     
     var label : UILabel = {
         let mLabel = UILabel()
         mLabel.textColor = UIColor.black
-        mLabel.text = "Victor Panitz Magalhães"
+        mLabel.text = "Some text"
         mLabel.font = UIFont.systemFont(ofSize: 12, weight: .semibold)
         mLabel.textAlignment = .left
         mLabel.numberOfLines = 2
@@ -71,10 +71,9 @@ class CustomTextFieldCell : UITableViewCell {
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String!)        {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-//        setupCell(type)
     }
     
-    func setupCell(_ type: Int){
+    func setupCell(_ type: Int) {
         
         self.addSubview(label)
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -86,7 +85,6 @@ class CustomTextFieldCell : UITableViewCell {
         containerView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            
             label.topAnchor.constraint(equalTo: self.topAnchor),
             label.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 8),
             label.trailingAnchor.constraint(equalTo: self.trailingAnchor),
@@ -130,7 +128,6 @@ class CustomTextFieldCell : UITableViewCell {
             print("default")
         }
         
-    
     }
     
     required init(coder aDecoder: NSCoder){
