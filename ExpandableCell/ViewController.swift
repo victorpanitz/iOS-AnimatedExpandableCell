@@ -13,13 +13,12 @@ class ViewController: UIViewController {
     let newTableView : UITableView = {
         let mTableView = UITableView()
         mTableView.tableFooterView = UIView()
-        mTableView.separatorStyle = UITableViewCellSeparatorStyle.none
         mTableView.register(CustomTextFieldCell.self, forCellReuseIdentifier: "mCell")
         mTableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
-
         return mTableView
     }()
     
+    let type = Constants()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,44 +53,43 @@ class ViewController: UIViewController {
             })
         }else{
             UIView.animate(withDuration: 0.5, delay: 0.1, options: .curveEaseIn, animations: {
-                cell.frame = CGRect(x: cell.frame.origin.x, y: cell.frame.origin.y, width: self.view.frame.width, height: 88)
+                cell.frame = CGRect(x: cell.frame.origin.x, y: cell.frame.origin.y, width: self.view.frame.width, height: cell.type == 1 ? 88 : 176)
                 cell.arrowImg.transform = CGAffineTransform(rotationAngle: (180.0 * CGFloat(Double.pi)) / 180.0)
                 cell.layoutIfNeeded()
             }, completion: { (finished: Bool)  in
-                cell.cellHeight = 88
+                cell.cellHeight = cell.type == 1 ? 88 : 176
                 self.newTableView.reloadData()
             })
         }
         cell.isExpanded = !cell.isExpanded
-
     }
     
     @objc func handleCustomTxtField(sender: UITextField){
         (newTableView.cellForRow(at: IndexPath(row: 2, section: 0)) as! CustomTextFieldCell).label.text = "Name: \(sender.text!)"
     }
     
-    
 }
 
 extension ViewController : UITableViewDataSource, UITableViewDelegate {
  
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        return 2
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.row == 2{
+        if indexPath.row == 0{
             let cell = tableView.dequeueReusableCell(withIdentifier: "mCell", for: indexPath) as! CustomTextFieldCell
-            cell.backgroundColor = UIColor.lightGray
-            cell.mTextField.addTarget(self, action: #selector(handleCustomTxtField(sender:)), for: .editingChanged)
+            cell.type = type.textFieldCell
+            cell.backgroundColor = UIColor.cyan
+            cell.textField.addTarget(self, action: #selector(handleCustomTxtField(sender:)), for: .editingChanged)
             return cell
         }else{
-            let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! UITableViewCell
-            cell.textLabel?.text = "Any Text"
+            let cell = tableView.dequeueReusableCell(withIdentifier: "mCell", for: indexPath) as! CustomTextFieldCell
+            cell.type = type.datePickerCell
+            cell.backgroundColor = UIColor.cyan
+            cell.textField.addTarget(self, action: #selector(handleCustomTxtField(sender:)), for: .editingChanged)
             return cell
-
         }
-       
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -104,8 +102,7 @@ extension ViewController : UITableViewDataSource, UITableViewDelegate {
         self.updateCell(indexPath)
     }
 
-   
-    
+
 }
 
 
